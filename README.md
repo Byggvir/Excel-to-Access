@@ -1,2 +1,2 @@
 # Excel-to-Access
-Connectin Excel spreed sheet with VBA Scripts to an Access DB
+Connecting Excel spreed sheet with VBA-scripts to an Access DB
