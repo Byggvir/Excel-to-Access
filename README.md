@@ -9,10 +9,11 @@ This is a collection of more or less useful examples.
 
 ## Files
 
-In DB/Datenbanken.7z you will find a test database ""Spielwiese.accdb"" and the spreasheet ""Spielwiese.xslm"".
+In DB/Datenbanken.7z you will find a test database _Spielwiese.accdb_ and the spreasheet _Spielwiese.xslm_.
 
---- under construction
 
-An VBA class for accessing Access databases is in ""AccessDB.cls"" ready for import.
+An VBA class for accessing Access databases is in _AccessDB.cls_ ready for import.
 
-The files ""InsertQueryForm.frm"" and ""InsertQueryForm.frx"" contain a userform and ""RibbonButtons.bas"" contains macros to call the sub routines from a RibbonButton.
+The files _InsertQueryForm.frm_ and _InsertQueryForm.frx_ contain a userform and _RibbonButtons.bas_ contains macros to call the sub routines from a RibbonButton.
+
+_under construction_
