@@ -24,7 +24,7 @@ Private Sub UserForm_Initialize()
 End Sub
 Private Sub CancelButton1_Click()
   
-  Unload Me
+  Me.Hide
     
 End Sub
 
@@ -44,8 +44,7 @@ Private Sub OkButton1_Click()
   
  Set DB = Nothing
  
-End Sub
-
-Private Sub UserForm_Click()
-
+ Me.Hide
+ 
+ 
 End Sub
