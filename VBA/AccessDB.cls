@@ -230,9 +230,15 @@ Public Sub InsertQueryResult(sSQL As String, Optional AtCell As String = "?")
      
 ' Abfrage ausführen
   cn.Open sConnection
+  On Error GoTo ErrorSQL
   Set rs = cn.Execute(sSQL)
 ' Copy the recordset to Excel
+  On Error GoTo 0
   Target.CopyFromRecordset rs
-
+  Exit Sub
    
+ErrorSQL:
+  Target.Value = "SQL-Error"
+  Exit Sub
+  
 End Sub
