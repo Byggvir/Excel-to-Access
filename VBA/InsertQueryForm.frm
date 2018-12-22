@@ -13,32 +13,24 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal x As Single, ByVal y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+Private Sub RefreshSQLBtn_Click()
+
+  Me.SQLTextBox.Value = ersetze(SQL_Insert, "\$1", ActiveSheet.Name)
 
 End Sub
-
-Private Sub MyDatabase_Click()
-  
-
-
-End Sub
-
 
 Private Sub MyDatabase_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
   
   Dim lngCount As Long
  
   ' Open the file dialog
+  
   With Application.FileDialog(msoFileDialogOpen)
-   
-   AllowMultiSelect = False
+    .AllowMultiSelect = False
     .Show
     If .SelectedItems.Count = 1 Then
-   
       MyDatabase.Value = .SelectedItems(1)
-    
     End If
-    
   End With
   
 End Sub
@@ -46,6 +38,7 @@ End Sub
 Private Sub UserForm_Initialize()
 
   Me.AtCell.Text = Selection.Address
+  Me.SQLTextBox.Value = ersetze(SQL_Insert, "\$1", ActiveSheet.Name)
  
 End Sub
 Private Sub CancelButton1_Click()
@@ -57,13 +50,13 @@ End Sub
 
 Private Sub OkButton1_Click()
 
- Dim DB As AccessDB
+ Dim DB As TAAccessDB
  
- Set DB = New AccessDB
+ Set DB = New TAAccessDB
  
  DB.Database = MyDatabase.Value
  
- DB.InsertQueryResult Me.SQLTextBox.Text, Me.AtCell.Text
+ DB.InsertQueryResult Me.SQLTextBox.Text, Me.AtCell.Text, Me.WithHeader.Value
   
  Set DB = Nothing
  

@@ -11,9 +11,17 @@ This is a collection of more or less useful examples.
 
 In DB/Datenbanken.7z you will find a test database _Spielwiese.accdb_ and the spreasheet _Spielwiese.xslm_.
 
+A VBA class for accessing Access databases is in _TAAccessDB.cls_ (old name AccessDB)  ready for import.
 
-An VBA class for accessing Access databases is in _AccessDB.cls_ ready for import.
+The files 
 
-The files _InsertQueryForm.frm_ and _InsertQueryForm.frx_ contain a userform and _RibbonButtons.bas_ contains macros to call the sub routines from a RibbonButton.
+* _InsertQueryForm.frm_,
+* _InsertQueryForm.frx_ 
+* _UpdateQueryForm.frm_,
+* _UpdateQueryForm.frx_ 
+
+contains two userformd and fil _RibbonButtons.bas_ contains macros to call the sub routines from a RibbonButton.
+
+_TAExel2Access.xlsm_ and _TAExel2Access.xlam_ contain the modules, the userforms and a ribbon "Access".
 
 _under construction_

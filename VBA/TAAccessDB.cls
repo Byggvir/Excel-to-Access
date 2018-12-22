@@ -2,15 +2,20 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "AccessDB"
+Attribute VB_Name = "TAAccessDB"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
+'
+' Class for accessing a Access DB with SQL Commands
+'
+
 Public strFarbe As String
 Private strDBProvider As String
 Private strDBFile As String
+
 Private Sub Class_Initialize()
 
   strDBProvider = "Microsoft.ACE.OLEDB.12.0"
@@ -25,7 +30,7 @@ Public Property Let Database(DBFile As String)
 End Property
 
 Public Property Get Database() As String
-    Database = strDatabase
+    Database = strDBFile
 End Property
 
 Public Function GetLong(sSQL As String) As Long
@@ -50,10 +55,10 @@ Public Function GetLong(sSQL As String) As Long
     ' Ergebnis zurückgeben
     If Not rs.EOF Then
       On Error GoTo ErrorNoNumber
-        sql_Long = rs.Fields(0)
+        GetLong = rs.Fields(0)
       On Error GoTo 0
     Else
-      sql_Long = 0
+      GetLong = 0
     End If
         
     ' Bereinigen der Objekte
@@ -204,7 +209,7 @@ ErrorNoString:
     
 End Function
 
-Public Sub InsertQueryResult(sSQL As String, Optional AtCell As String = "?")
+Public Sub InsertQueryResult(sSQL As String, Optional AtCell As String = "?", Optional WithHeader As Boolean = False)
 
 
 ' sSQL: Abfrage die ausgeführt werden soll.
@@ -217,6 +222,9 @@ Public Sub InsertQueryResult(sSQL As String, Optional AtCell As String = "?")
   Dim rs As Object
   Dim sConnection As String
   Dim Target As Range
+  
+  Dim i As Long
+  
   
   If AtCell = "?" Then
     Set Target = Selection
@@ -234,11 +242,51 @@ Public Sub InsertQueryResult(sSQL As String, Optional AtCell As String = "?")
   Set rs = cn.Execute(sSQL)
 ' Copy the recordset to Excel
   On Error GoTo 0
-  Target.CopyFromRecordset rs
+  If WithHeader Then
+    For i = 0 To rs.Fields.Count - 1
+      Target.Offset(0, i).Value = rs.Fields(i).Name
+    Next
+    Target.Offset(1, 0).CopyFromRecordset rs
+  Else
+    Target.CopyFromRecordset rs
+  End If
   Exit Sub
    
 ErrorSQL:
   Target.Value = "SQL-Error"
   Exit Sub
   
+End Sub
+
+Public Sub Update(sSQL As String)
+
+' sSQL: Abfrage die ausgeführt werden soll.
+' AtCell: Position (Cell) ab der das Abfrageergebnis kopiert werden soll.
+'         Default: Aktive Zelle
+
+' Definieren der Objekte
+
+  Dim cn As Object
+  Dim rs As Object
+  Dim sConnection As String
+  
+  Dim i As Long
+  
+  ' Verbinden zur Datenbank
+  Set cn = CreateObject("ADODB.Connection")
+  sConnection = "Provider=" & strDBProvider & "; Data Source=" & strDBFile & ";"
+     
+' Abfrage ausführen
+  cn.Open sConnection
+  On Error GoTo ErrorSQL
+  Set rs = cn.Execute(sSQL)
+
+' Copy the recordset to Excel
+  On Error GoTo 0
+  Exit Sub
+   
+ErrorSQL:
+  MsgBox "SQL Error:" & sSQL
+  Exit Sub
+
 End Sub
