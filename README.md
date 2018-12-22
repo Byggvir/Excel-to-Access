@@ -20,15 +20,15 @@ The files
 * _UpdateQueryForm.frm_,
 * _UpdateQueryForm.frx_ 
 
-![Insert from Access] (Images/TAE2A001.png)
+![Insert from Access](https://github.com/Byggvir/Excel-to-Access/raw/master/Images/TAE2A001.png)
 
 
 contains two userformd and fil _RibbonButtons.bas_ contains macros to call the sub routines from a RibbonButton.
 
 _TAExel2Access.xlsm_ and _TAExel2Access.xlam_ contain the modules, the userforms and a ribbon "Access".
 
-![Insert from Access 2] (Images/TAE2A002.png)
-![Insert from Access 3] (Images/TAE2A003.png)
-![Insert from Access 4] (Images/TAE2A004.png)
+![Insert from Access 2](https://github.com/Byggvir/Excel-to-Access/raw/master/Images/TAE2A002.png)
+![Insert from Access 3](https://github.com/Byggvir/Excel-to-Access/raw/master/Images/TAE2A003.png)
+![Insert from Access 4](https://github.com/Byggvir/Excel-to-Access/raw/master/Images/TAE2A004.png)
 
 _under construction_
